@@ -1,2 +1,2 @@
 # AutoCRAT-accessory-scripts
-Accessory scripts for AutoCRAT
+Accessory scripts for [AutoCRAT](https://github.com/dovratd/AutoCRAT)
