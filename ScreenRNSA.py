@@ -203,7 +203,11 @@ def create_summary_file(writer, value_string, summary_table, cell_format, float_
     writer.sheets[value_string].write(2, summary_table.shape[1] + 2, 'Num. of ' + value_string.lower() + ' cells:')
     writer.sheets[value_string].write(2, summary_table.shape[1] + 6, summary_table.shape[0])
     writer.sheets[value_string].write(3, summary_table.shape[1] + 2, 'Median replication time:')
-    writer.sheets[value_string].write(3, summary_table.shape[1] + 6, summary_table.iloc[:, 4].median(), float_format)
+    if summary_table.shape[0]:
+        writer.sheets[value_string].write(3,
+                                          summary_table.shape[1] + 6,
+                                          summary_table.iloc[:, 4].median(),
+                                          float_format)
 
 
 def screen_old_rnsa(old_rnsa, positive_cells, relevant_cells,
@@ -308,3 +312,4 @@ if __name__ == '__main__':
 
     # Create new RNSA tables by screening the old RNSA for positive cells and export to Excel.
     screen_old_rnsa(old_rnsa, positive_cells, rnsa_cells, rnsa_channels, rnsa_folder, rnsa_filename, screened_string)
+
