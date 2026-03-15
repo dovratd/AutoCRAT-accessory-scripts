@@ -258,14 +258,14 @@ if __name__ == '__main__':
     # averaged intensity, to check which cells should be included in the new RNSA.
     positive_cells = {}
     average_intensity = {}
-    for field, data in results_data.items():
+    for field, field_data in results_data.items():
 
         positive_cells[field] = {}
         average_intensity[field] = {}
-        for cell_name, cell_data in data.items():
+        for cell_name, cell_data in field_data.items():
 
             relevant_track_name = [t for t in cell_data.columns.get_level_values(0) if channel_of_interest in t]
-            if len(set(relevant_track_name)) == 1:
+            if len(set(relevant_track_name)) == 1 and cell_data.shape[0] >= window_length:
                 # Get the intensity data for the relevant track.
                 intensity_series = cell_data.loc[:, (relevant_track_name, 'Intensity')]
                 # Run the rolling window analysis.
